@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sobre nosotros – TwinsTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── INTRO ── */
+    .nosotros-intro { padding: 90px 5%; background: var(--black-card); }
+    .nosotros-intro-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .intro-text p {
+      font-size: 1rem;
+      color: var(--gray-text, #A0A0A0);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .intro-text p:last-child { margin-bottom: 0; }
+
+    .intro-visual {
+      background: var(--black-soft);
+      border-radius: 20px;
+      padding: 48px 40px;
+      color: white;
+    }
+    .intro-visual-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green-main);
+      margin-bottom: 28px;
+    }
+    .value-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .value-item { display: flex; gap: 14px; align-items: flex-start; }
+    .value-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .value-icon img { width: 28px; height: 28px; object-fit: contain; display: block; }
+    .tl-dot img { width: 32px; height: 32px; object-fit: contain; border-radius: 2px; }
+    .value-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--green-main);
+      margin-bottom: 4px;
+    }
+    .value-desc { font-size: 0.85rem; color: #B8B8B8; line-height: 1.6; }
+
+    /* ── HISTORIA TIMELINE ── */
+    .historia-section { background: var(--black-soft); padding: 90px 5%; }
+    .historia-inner { max-width: 900px; margin: 0 auto; }
+    .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 48px; position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--green-main), var(--lime));
+    }
+    .tl-item {
+      display: flex;
+      gap: 28px;
+      padding-bottom: 44px;
+      position: relative;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: var(--black-card);
+      border: 3px solid var(--green-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 16px rgba(29,185,84,0.15);
+    }
+    .tl-dot.highlight {
+      background: var(--green-main);
+      border-color: var(--green-main);
+    }
+    .tl-content {
+      background: var(--black-card);
+      border-radius: 14px;
+      padding: 24px 28px;
+      border: 1px solid var(--black-border);
+      flex: 1;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .tl-year {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green-main);
+      margin-bottom: 6px;
+    }
+    .tl-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .tl-text { font-size: 0.9rem; color: var(--gray-text, #A0A0A0); line-height: 1.7; }
+    .tl-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--green-main);
+      background: rgba(29,185,84,0.06);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-top: 10px;
+    }
+
+    /* ── MISIÓN ── */
+    .mision-section { background: var(--black-card); padding: 90px 5%; }
+    .mision-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .mision-card {
+      padding: 36px 28px;
+      border-radius: 14px;
+      border: 1.5px solid var(--black-border);
+      position: relative;
+      overflow: hidden;
+    }
+    .mision-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green-main), var(--lime));
+    }
+    .mision-label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green-main);
+      margin-bottom: 12px;
+    }
+    .mision-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .mision-text { font-size: 0.9rem; color: var(--gray-text, #A0A0A0); line-height: 1.7; }
+
+    /* ── EQUIPO ── */
+    .equipo-section { background: var(--black-soft); padding: 90px 5%; }
+    .equipo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .team-card {
+      background: var(--black-card);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid var(--black-border);
+      transition: transform 0.2s, box-shadow 0.25s;
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(29,185,84,0.12); }
+    .team-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-main), var(--lime));
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    .team-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .team-role {
+      font-size: 0.82rem;
+      color: var(--green-main);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .team-bio { font-size: 0.85rem; color: var(--gray-text, #A0A0A0); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .nosotros-cta {
+      background: var(--black-soft);
+      padding: 80px 5%;
+      text-align: center;
+    }
+    .nosotros-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 14px;
+    }
+    .nosotros-cta p { color: rgba(248,255,249,0.7); font-size: 1rem; margin-bottom: 32px; }
+
+    @media (max-width: 768px) {
+      .nosotros-intro-inner { grid-template-columns: 1fr; gap: 40px; }
+      .equipo-grid { grid-template-columns: 1fr; }
+      .mision-inner { grid-template-columns: 1fr; }
+      .timeline::before { left: 22px; }
+      .tl-dot { width: 46px; height: 46px; font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-tag">Sobre nosotros</div>
+  <h1 class="page-hero-title">Experiencia que<br><span class="accent">genera confianza</span></h1>
+  <p class="page-hero-sub">Seriedad, compromiso y atención personalizada. Somos dos hermanos especializados en soporte técnico y desarrollo web, creando soluciones tecnológicas a medida.</p>
+</div>
+
+<!-- INTRO -->
+<section class="nosotros-intro">
+  <div class="nosotros-intro-inner">
+    <div class="intro-text">
+      <div class="section-tag">Quiénes somos</div>
+      <h2 class="section-title" style="margin-top:12px;">Un equipo con historia<br>y <span class="accent">experiencia real</span></h2>
+      <br>
+      <p>Somos dos hermanos apasionados por la tecnología, con una trayectoria de muchos años en el mundo de la informática. A lo largo del tiempo, cada uno fue especializándose en un área diferente: uno dedicado al soporte técnico, brindando soluciones y asistencia a empresas y particulares, y el otro enfocado en el desarrollo web, creando sitios modernos, funcionales y adaptados a las necesidades de cada cliente.</p>
+      <p>Combinando nuestros conocimientos técnicos y creatividad decidimos unir nuestras experiencias para ofrecer un servicio integral. Y de esta manera acompañamos a nuestros clientes en sus proyectos tecnológicos desde hace más de 6 años.</p>
+      <p>Nuestra experiencia también nos llevó a vivir y trabajar durante algunos años en Brasil, donde seguimos creciendo profesionalmente y adquiriendo una mirada más amplia sobre el sector. Hoy estamos nuevamente en Buenos Aires, ofreciendo el mismo compromiso, cercanía y dedicación que nos caracteriza desde el primer día.</p>
+      <p>Creemos que la tecnología debe simplificar la vida de las personas y ayudar a los negocios a crecer. Por eso trabajamos de manera personalizada, escuchando las necesidades de cada cliente y ofreciendo soluciones confiables, eficientes y pensadas para el largo plazo.</p>
+    </div>
+    <div class="intro-visual">
+      <div class="intro-visual-title">Nuestros valores</div>
+      <ul class="value-list">
+        <li class="value-item">
+          <span class="value-icon"><img src="assets/icon_chat_2.png" alt=""></span>
+          <div>
+            <div class="value-title">Claridad ante todo</div>
+            <div class="value-desc">Creemos en una comunicación transparente desde el primer contacto. Explicamos cada propuesta de forma clara, para que sepas exactamente qué servicio contratás, cómo lo desarrollaremos y qué resultados podés esperar.</div>
+          </div>
+        </li>
+        <li class="value-item">
+          <span class="value-icon"><img src="assets/icon_clock.png" alt=""></span>
+          <div>
+            <div class="value-title">Respeto por tu tiempo</div>
+            <div class="value-desc">Valoramos el tiempo de nuestros clientes tanto como el nuestro. Nos comprometemos a cumplir los plazos establecidos y a mantener una comunicación constante ante cualquier cambio que pueda afectar el desarrollo del proyecto.</div>
+          </div>
+        </li>
+        <li class="value-item">
+          <span class="value-icon"><img src="assets/icon_world.png" alt=""></span>
+          <div>
+            <div class="value-title">Experiencia probada</div>
+            <div class="value-desc">Nuestra trayectoria en el rubro, sumada a los años de experiencia profesional, nos permitió desarrollar una visión amplia y la capacidad de adaptarnos a proyectos de distintas escalas y necesidades.</div>
+          </div>
+        </li>
+        <li class="value-item">
+          <span class="value-icon"><img src="assets/icon_idea.png" alt=""></span>
+          <div>
+            <div class="value-title">Soluciones reales</div>
+            <div class="value-desc">Cada proyecto es único. Por eso analizamos cada situación antes de proponer una solución, priorizando siempre alternativas eficientes, sostenibles y alineadas con los objetivos de nuestros clientes.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- MISIÓN / VISIÓN / PROPÓSITO -->
+<section class="mision-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-header" style="max-width:560px;">
+      <span class="section-tag">Lo que nos motiva</span>
+      <h2 class="section-title">Misión, visión<br>y <span class="accent">propósito</span></h2>
+    </div>
+    <div class="mision-inner">
+      <div class="mision-card">
+        <div class="mision-label">Misión</div>
+        <div class="mision-title">Hacer accesible la tecnología</div>
+        <p class="mision-text">Brindar soluciones de soporte técnico y desarrollo web con calidad profesional, atención personalizada y precios justos, ayudando a personas, emprendedores y empresas a aprovechar la tecnología con confianza.</p>
+      </div>
+      <div class="mision-card">
+        <div class="mision-label">Visión</div>
+        <div class="mision-title">Ser el equipo tech de confianza</div>
+        <p class="mision-text">Convertirnos en un aliado tecnológico de referencia para empresas y emprendedores, acompañando su crecimiento con soluciones confiables, cercanas y adaptadas a cada desafío.</p>
+      </div>
+      <div class="mision-card">
+        <div class="mision-label">Propósito</div>
+        <div class="mision-title">Conectar negocios con el mundo</div>
+        <p class="mision-text">Creemos que la tecnología es una herramienta para impulsar el crecimiento. Nuestro propósito es acercar a cada negocio las oportunidades del entorno digital mediante soluciones simples, eficientes y pensadas para generar valor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="equipo-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-header">
+      <span class="section-tag">El equipo</span>
+      <h2 class="section-title">Las personas detrás<br>de <span class="accent">TwinsTech</span></h2>
+      <p class="section-sub">Conocé a las personas que hacen posible cada proyecto y cada solución.</p>
+    </div>
+    <div class="equipo-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 740px;">
+      <div class="team-card">
+        <div class="team-avatar" style="background:none;overflow:hidden;">
+          <img src="assets/pictures/picture-tech.png" alt="Técnico" style="width:80px;height:80px;object-fit:cover;border-radius:50%;display:block;" draggable="false">
+        </div>
+        <div class="team-name">Nombre Apellido</div>
+        <div class="team-role">Soporte Técnico</div>
+        <p class="team-bio">Especialista en soporte técnico, diagnóstico y resolución de problemas informáticos. Cuenta con amplia experiencia en configuración de equipos, asistencia a usuarios y soluciones tecnológicas, brindando soporte profesional en Brasil y Argentina.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:none;overflow:hidden;">
+          <img src="assets/pictures/picture-developer.png" alt="Desarrollador" style="width:80px;height:80px;object-fit:cover;border-radius:50%;display:block;" draggable="false">
+        </div>
+        <div class="team-name">Nombre Apellido</div>
+        <div class="team-role">Desarrollo Web & Diseño</div>
+        <p class="team-bio">Especialista en diseño y desarrollo de sitios web modernos, funcionales y orientados a resultados. Combina creatividad y conocimiento técnico para crear experiencias digitales atractivas, intuitivas y adaptadas a cada proyecto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="nosotros-cta">
+  <h2>Contanos qué necesitás</h2>
+  <p>Soporte técnico, desarrollo web o cualquier consulta — te respondemos a la brevedad.</p>
+  <a href="contacto.html" class="btn-primary">Escribinos ahora</a>
+</div>
+
+<script src="shared.js"></script>
+</body>
+</html>

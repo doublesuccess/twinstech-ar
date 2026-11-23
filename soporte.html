@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soporte Técnico – TwinsTech</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .srv-section { padding: 80px 5% 100px; background: var(--black); }
+    .srv-inner { max-width: 1100px; margin: 0 auto; }
+
+    /* Price card */
+    .price-card { border:1.5px solid var(--black-border); border-radius:16px; padding:36px 32px; background:var(--black-card); transition:border-color .25s,transform .2s,box-shadow .25s; }
+    .price-card:hover { border-color:rgba(29,185,84,0.35); transform:translateY(-3px); box-shadow:0 16px 48px rgba(29,185,84,0.08); }
+    .plan-name { font-family:var(--font-display); font-size:.75rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--green-main); margin-bottom:8px; }
+    .plan-desc { font-size:.93rem; color:#B0B0B0; line-height:1.7; margin-bottom:20px; }
+    .plan-price { display:flex; flex-direction:column; align-items:flex-start; gap:2px; margin-bottom:6px; }
+    .plan-divider { height:1px; background:var(--black-border); margin-bottom:20px; }
+    .plan-features { list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:28px; }
+    .plan-features li { display:flex; align-items:center; gap:10px; font-size:.88rem; color:#B0B0B0; }
+    .feat-check { color:var(--green-main); font-weight:700; flex-shrink:0; }
+    .btn-plan-filled { display:block; text-align:center; padding:13px; border-radius:9px; font-family:var(--font-display); font-weight:700; font-size:.92rem; text-decoration:none; background:var(--green-main); color:var(--black); box-shadow:0 4px 16px rgba(29,185,84,0.25); transition:background .2s,transform .1s; }
+    .btn-plan-filled:hover { background:#25d468; transform:translateY(-1px); }
+    .btn-plan-outline { display:block; text-align:center; padding:13px; border-radius:9px; font-family:var(--font-display); font-weight:600; font-size:.92rem; text-decoration:none; border:1.5px solid var(--green-main); color:var(--green-main); transition:background .2s; }
+    .btn-plan-outline:hover { background:rgba(29,185,84,0.08); }
+
+    /* FAQ accordion */
+    .faq-item { border-bottom:1px solid rgba(240,240,240,0.08); }
+    .faq-question { width:100%; text-align:left; background:none; border:none; padding:20px 0; font-family:var(--font-display); font-size:1rem; font-weight:600; color:var(--white); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; transition:color .2s; }
+    .faq-question:hover { color:var(--green-main); }
+    .faq-arrow { width:28px; height:28px; border-radius:50%; background:rgba(29,185,84,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.85rem; transition:transform .3s,background .2s; color:var(--green-main); }
+    .faq-item.open .faq-arrow { transform:rotate(180deg); background:var(--green-main); color:white; }
+    .faq-answer { display:none; padding:0 0 20px; font-size:.93rem; color:#B0B0B0; line-height:1.75; }
+    .faq-item.open .faq-answer { display:block; }
+
+    /* mini card grid */
+    .mini-card { background:rgba(29,185,84,0.06); border:1px solid rgba(29,185,84,0.12); border-radius:10px; padding:14px 16px; }
+    .mini-card-title { font-family:var(--font-display); font-size:.85rem; font-weight:600; color:var(--white); margin-bottom:4px; }
+    .mini-card-desc { font-size:.8rem; color:#909090; line-height:1.5; }
+
+    .cta-strip { background:var(--black-soft); border:1px solid var(--black-border); border-radius:16px; padding:48px 40px; text-align:center; margin-top:72px; }
+    .cta-strip h3 { font-family:var(--font-display); font-size:1.5rem; font-weight:700; color:var(--white); margin-bottom:12px; letter-spacing:.2px; }
+    .cta-strip p { color:#B0B0B0; font-size:.95rem; margin-bottom:28px; }
+  </style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="page-hero-tag">Soporte Técnico</div>
+  <h1 class="page-hero-title">Soporte técnico <span class="accent">confiable</span></h1>
+  <p class="page-hero-sub">Presencial en zona Microcentro y alrededores, o de forma remota en cualquier parte del país. Diagnóstico, resolución y garantía en cada intervención.</p>
+</div>
+
+<section class="srv-section">
+  <div class="srv-inner">
+
+    <!-- PRECIO + QUÉ RESOLVEMOS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;margin-bottom:72px;">
+
+      <div class="price-card" style="border-color:rgba(29,185,84,0.3);">
+        <div class="plan-name">Soporte técnico</div>
+        <p class="plan-desc">Soporte presencial en zona Microcentro y alrededores, o de forma remota en cualquier parte del país. Adaptamos la modalidad a tu necesidad.</p>
+        <div class="plan-price" style="margin-bottom:4px;">
+          <span style="font-size:.85rem;color:#B0B0B0;padding-bottom:6px;">Precio</span>
+          <span style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--green-main);">A consultar</span>
+        </div>
+        <p style="font-size:.8rem;color:#B0B0B0;margin-bottom:24px;">El costo depende del tipo y duración del trabajo · En ARS</p>
+        <div class="plan-divider"></div>
+        <ul class="plan-features" style="margin-bottom:28px;">
+          <li><span class="feat-check">✓</span> Diagnóstico inicial gratuito</li>
+          <li><span class="feat-check">✓</span> Atención presencial o remota según tu ubicación</li>
+          <li><span class="feat-check">✓</span> Presupuesto previo sin compromiso</li>
+          <li><span class="feat-check">✓</span> Pago al finalizar el trabajo</li>
+          <li><span class="feat-check">✓</span> Garantía 7 días por el mismo problema</li>
+        </ul>
+        <a href="contacto.html" class="btn-plan-filled">Consultar precio →</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="font-family:var(--font-display);font-size:.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green-main);margin-bottom:4px;">Qué podemos resolver</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="mini-card">
+            <div class="mini-card-title">Rendimiento</div>
+            <div class="mini-card-desc">Optimización de PC lenta o con problemas de inicio</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-title">Drivers & programas</div>
+            <div class="mini-card-desc">Instalación, configuración y actualización</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-title">Configuración de Windows</div>
+            <div class="mini-card-desc">Ajustes del sistema, personalización y gestión de cuentas</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-title">Redes & periféricos</div>
+            <div class="mini-card-desc">Impresoras locales o en red, redes compartidas</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-title">Armado de PC</div>
+            <div class="mini-card-desc">Selección de componentes, ensamblado y puesta en funcionamiento</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-title">Instalación de Windows</div>
+            <div class="mini-card-desc">Instalación limpia, activación y configuración inicial</div>
+          </div>
+          <div class="mini-card" style="grid-column:1/-1;">
+            <div class="mini-card-title">Otros inconvenientes</div>
+            <div class="mini-card-desc">Cualquier otro problema técnico. Consultanos y te decimos cómo podemos ayudarte.</div>
+          </div>
+        </div>
+        <div style="background:var(--black-soft);border:1px solid var(--black-border);border-radius:12px;padding:20px 22px;display:flex;align-items:flex-start;gap:12px;margin-top:4px;">
+          <img src="assets/icon_lightning.png" alt="" style="width:22px;height:22px;object-fit:contain;flex-shrink:0;margin-top:2px;">
+          <div style="font-size:.85rem;color:#B0B0B0;line-height:1.6;">
+            <strong style="color:var(--green-main);display:block;margin-bottom:2px;">Consulta sin compromiso</strong>
+            Contanos tu caso y te informamos cómo podemos ayudarte. Te enviamos un presupuesto antes de arrancar.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="max-width:860px;margin:0 auto;">
+      <span class="section-tag">Preguntas frecuentes</span>
+      <h2 class="section-title" style="margin-top:12px;margin-bottom:32px;">Lo que más nos <span class="accent">preguntan</span></h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Cómo funciona el servicio de soporte técnico?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Según tu ubicación y el tipo de problema, el servicio puede ser presencial o remoto. Si estás en CABA, zona Microcentro y alrededores, podemos coordinar una visita directamente. Para el resto del país, trabajamos de forma remota conectándonos a tu equipo con herramientas de acceso seguro y encriptado. En ambos casos, te acompañamos durante todo el proceso.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Qué tipo de problemas pueden resolver?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Resolvemos una amplia variedad de situaciones: optimización de PC lenta, instalación de drivers y programas, configuración de Windows, instalación limpia del sistema operativo, armado de PC, configuración de impresoras y redes compartidas, entre otros. Si tenés algún problema específico que no está en la lista, consultanos sin problema.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Cuánto tiempo lleva resolver un problema?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Por lo general tratamos de resolver en el menor tiempo posible, pero depende del tipo de trabajo. Muchas consultas se resuelven en 20 a 40 minutos. Problemas más complejos como configuración de redes, instalación de Windows o armado de PC pueden llevar más tiempo. Siempre te estimamos el tiempo antes de arrancar.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Qué pasa si el problema no se resuelve?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Si el trabajo requiere más tiempo del estimado, lo coordinamos en un nuevo encuentro. Si el inconveniente no se puede resolver con una intervención técnica, por ejemplo cuando una parte del equipo está dañada y hay que cambiarla, te lo explicamos con claridad y te orientamos sobre los pasos a seguir. En ese caso sólo se pagaría por la revisión.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Cómo son los precios y formas de pago?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Los precios varían según el trabajo y la complejidad. Siempre enviamos un presupuesto detallado antes de empezar. El pago se realiza al finalizar el trabajo. Aceptamos efectivo, transferencia bancaria y las principales billeteras virtuales.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Tienen garantía en el servicio?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Sí. Si el mismo problema reaparece dentro de los 7 días posteriores a la entrega, lo revisamos sin cargo adicional.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Cómo me contacto para pedir un presupuesto?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Podés escribirnos por email a contacto@twinstech-ar.com, por WhatsApp al +54 11 4066-9217 o a través del formulario de contacto.</div>
+      </div>
+    </div>
+
+    <div class="cta-strip">
+      <h3>¿Tenés un problema técnico?</h3>
+      <p>Contanos qué pasa y te respondemos a la brevedad con un diagnóstico y presupuesto sin costo.</p>
+      <a href="contacto.html" class="btn-primary">Consultar ahora</a>
+    </div>
+
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+  function toggle(btn) { btn.closest('.faq-item').classList.toggle('open'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Asistencia Técnica Mensual – TwinsTech</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .ab-section { padding: 90px 5%; background: var(--black); }
+    .ab-section.alt { background: var(--black-soft); border-top: 1px solid var(--black-border); border-bottom: 1px solid var(--black-border); }
+    .ab-inner { max-width: 1100px; margin: 0 auto; }
+    .ab-head { margin-bottom: 44px; }
+    .ab-head .section-sub { max-width: 620px; }
+
+    /* ── INTRO ── */
+    .ab-intro { display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: center; }
+    .ab-intro-text p { font-size: 1.02rem; color: #B8B8B8; line-height: 1.85; }
+    .ab-intro-text p + p { margin-top: 16px; }
+    .ab-intro-text .ab-lead { color: var(--white); font-weight: 500; }
+
+    .ab-plan {
+      background: var(--black-card);
+      border: 1.5px solid rgba(29,185,84,0.35);
+      border-radius: 18px;
+      padding: 36px 32px;
+      box-shadow: 0 8px 40px rgba(29,185,84,0.07);
+    }
+    .ab-plan-top { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+    .ab-plan-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(29,185,84,0.1);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .ab-plan-icon img { width: 30px; height: 30px; object-fit: contain; }
+    .ab-plan-label { font-family: var(--font-display); font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green-main); }
+    .ab-plan-name { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--white); letter-spacing: 0.2px; }
+    .ab-plan-price { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; color: var(--green-main); line-height: 1.1; margin-bottom: 4px; }
+    .ab-plan-note { font-size: 0.82rem; color: #909090; margin-bottom: 22px; }
+    .ab-plan-divider { height: 1px; background: var(--black-border); margin-bottom: 20px; }
+    .ab-plan ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+    .ab-plan li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: #B8B8B8; line-height: 1.5; }
+    .ab-check { color: var(--green-main); font-weight: 700; flex-shrink: 0; }
+    .ab-btn {
+      display: block; text-align: center; padding: 14px; border-radius: 9px;
+      background: var(--green-main); color: var(--black);
+      font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(29,185,84,0.25);
+      transition: background 0.2s, transform 0.1s;
+    }
+    .ab-btn:hover { background: #25d468; transform: translateY(-1px); }
+
+    /* ── INCLUDES ── */
+    .ab-includes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .ab-include {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--black-card); border: 1px solid var(--black-border);
+      border-radius: 12px; padding: 18px 20px;
+      font-size: 0.92rem; color: #D0D0D0; line-height: 1.45;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .ab-include:hover { border-color: rgba(29,185,84,0.35); transform: translateY(-2px); }
+    .ab-include-check {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(29,185,84,0.12); color: var(--green-main);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+    }
+
+
+    /* ── SUBTÍTULO DE SECCIÓN ── */
+    .ab-title-sub {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-family: var(--font-display); font-size: 1.05rem; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase; color: #B8B8B8;
+    }
+    .ab-title-sub::before { content: ''; width: 32px; height: 2px; background: var(--green-main); border-radius: 2px; }
+
+    /* ── NOTA / CALLOUT ── */
+    .ab-note {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(29,185,84,0.06);
+      border: 1px solid rgba(29,185,84,0.2);
+      border-left: 3px solid var(--green-main);
+      border-radius: 12px; padding: 18px 22px;
+    }
+    .ab-note img { width: 30px; height: 30px; object-fit: contain; flex-shrink: 0; }
+    .ab-note p { font-size: 0.95rem; color: #D0D0D0; line-height: 1.65; }
+
+    /* ── ALCANCE ── */
+    .ab-scope { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; align-items: stretch; }
+    .ab-scope-card { background: var(--black-card); border: 1px solid var(--black-border); border-radius: 16px; padding: 32px 30px; }
+    .ab-scope-main { border-color: rgba(29,185,84,0.3); display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+    .ab-scope-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(29,185,84,0.1); display: flex; align-items: center; justify-content: center; }
+    .ab-scope-icon img { width: 30px; height: 30px; object-fit: contain; }
+    .ab-scope-main p { font-size: 1.02rem; color: #D0D0D0; line-height: 1.8; }
+    .ab-scope-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--white); letter-spacing: 0.2px; margin-bottom: 18px; }
+    .ab-nolist { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .ab-nolist li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.93rem; color: #B8B8B8; line-height: 1.55; }
+    .ab-x {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(229,115,111,0.12); color: #e5736f;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── STEPS ── */
+    .ab-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .ab-step { background: var(--black-card); border: 1px solid var(--black-border); border-radius: 14px; padding: 28px 24px; position: relative; }
+    .ab-step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--green-main); color: var(--black);
+      font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+    }
+    .ab-step p { font-size: 1rem; color: #D0D0D0; line-height: 1.65; }
+    .ab-step p strong { color: var(--white); font-family: var(--font-display); display: block; font-size: 1rem; margin-bottom: 6px; font-weight: 600; }
+
+    /* ── BENEFITS ── */
+    .ab-benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .ab-benefit {
+      background: var(--black-card); border: 1.5px solid var(--black-border);
+      border-radius: 14px; padding: 28px 24px;
+      transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+    }
+    .ab-benefit:hover { border-color: rgba(29,185,84,0.35); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(29,185,84,0.07); }
+    .ab-benefit-icon {
+      width: 46px; height: 46px; border-radius: 11px;
+      background: rgba(29,185,84,0.08);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .ab-benefit-icon img { width: 26px; height: 26px; object-fit: contain; }
+    .ab-benefit h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--white); line-height: 1.4; letter-spacing: 0.2px; }
+
+    /* ── AUDIENCE ── */
+    .ab-audience { display: flex; flex-wrap: wrap; gap: 12px; }
+    .ab-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(29,185,84,0.08); border: 1px solid rgba(29,185,84,0.25);
+      border-radius: 100px; padding: 12px 22px;
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 500; color: var(--white);
+    }
+    .ab-chip span { color: var(--green-main); font-weight: 700; }
+
+    /* ── CTA ── */
+    .ab-cta { text-align: center; max-width: 800px; margin: 0 auto; }
+    .ab-cta p {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 600; color: var(--white);
+      line-height: 1.45; letter-spacing: 0.2px;
+      text-wrap: balance;
+      margin-bottom: 36px;
+    }
+    .ab-cta p .accent { color: var(--green-main); }
+
+    @media (max-width: 960px) {
+      .ab-intro { grid-template-columns: 1fr; gap: 40px; }
+      .ab-scope { grid-template-columns: 1fr; }
+      .ab-includes { grid-template-columns: repeat(2, 1fr); }
+      .ab-steps { grid-template-columns: repeat(2, 1fr); }
+      .ab-benefits { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .ab-section { padding: 70px 5%; }
+      .ab-includes, .ab-steps, .ab-benefits { grid-template-columns: 1fr; }
+      .ab-plan { padding: 28px 22px; }
+      .ab-scope-card { padding: 26px 22px; }
+      .ab-note { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="page-hero-tag">Asistencia Técnica Mensual</div>
+  <h1 class="page-hero-title">Abono mensual de<br><span class="accent">asistencia informática</span></h1>
+  <p class="page-hero-sub">Tené asistencia informática siempre disponible, sólo abonando una cuota fija mensual.</p>
+</div>
+
+<!-- EL SERVICIO -->
+<section class="ab-section">
+  <div class="ab-inner ab-intro">
+    <div class="ab-intro-text">
+      <span class="section-tag">El servicio</span>
+      <h2 class="section-title" style="margin-top:12px;margin-bottom:22px;">Asistencia informática integral con <span class="accent">una cuota mensual</span></h2>
+      <p>Es un servicio de asistencia informática integral que, mediante una cuota mensual fija, te brinda acceso a soporte técnico profesional para resolver problemas, responder consultas y recibir asesoramiento sobre tecnología e informática, siempre que lo necesites.</p>
+    </div>
+
+    <div class="ab-plan">
+      <div class="ab-plan-top">
+        <div class="ab-plan-icon"><img src="assets/icon_refresh_2.png" alt="" draggable="false"></div>
+        <div>
+          <div class="ab-plan-label">Cuota mensual fija</div>
+          <div class="ab-plan-name">Asistencia Técnica Mensual</div>
+        </div>
+      </div>
+      <div class="ab-plan-price">Precio a Consultar</div>
+      <p class="ab-plan-note">Contanos cuántos equipos necesitás cubrir y te preparamos una propuesta a medida.</p>
+      <div class="ab-plan-divider"></div>
+      <ul>
+        <li><span class="ab-check">✓</span> Soporte técnico profesional cuando lo necesites</li>
+        <li><span class="ab-check">✓</span> Consultas y asesoramiento tecnológico</li>
+        <li><span class="ab-check">✓</span> Un costo fijo y previsible</li>
+      </ul>
+      <a href="contacto.html" class="ab-btn">Solicitar presupuesto</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ INCLUYE -->
+<section class="ab-section alt">
+  <div class="ab-inner">
+    <div class="ab-head">
+      <span class="section-tag">Incluye</span>
+      <h2 class="section-title" style="margin-top:12px;">¿Qué servicios <span class="accent">incluye?</span></h2>
+    </div>
+    <div class="ab-includes">
+      <div class="ab-include"><span class="ab-include-check">✓</span> Soporte técnico informático</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Diagnóstico y resolución de problemas</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Asistencia remota</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Configuración de computadoras y notebooks</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Instalación y configuración de programas</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Configuración de impresoras y periféricos</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Solución de problemas de Internet y redes</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Asistencia con correo electrónico y aplicaciones</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Configuración de antivirus y seguridad informática</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Asesoramiento tecnológico</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Mantenimiento preventivo</div>
+      <div class="ab-include"><span class="ab-include-check">✓</span> Asistencia con copias de seguridad</div>
+    </div>
+    <div class="ab-note" style="margin-top:28px;">
+      <img src="assets/icon_world.png" alt="" draggable="false">
+      <p>La asistencia se brinda principalmente de manera remota, siempre que el inconveniente permita una intervención a distancia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="ab-section">
+  <div class="ab-inner">
+    <div class="ab-head">
+      <span class="section-tag">Cómo funciona</span>
+      <h2 class="section-title" style="margin-top:12px;">¿Cómo <span class="accent">funciona?</span></h2>
+    </div>
+    <div class="ab-steps">
+      <div class="ab-step">
+        <div class="ab-step-num">1</div>
+        <p>Nos contactás para solicitar un presupuesto y contratar el servicio de asistencia mensual.</p>
+      </div>
+      <div class="ab-step">
+        <div class="ab-step-num">2</div>
+        <p>Una vez contratado el servicio, te comunicás con nosotros cuando necesitás asistencia o tenés alguna consulta.</p>
+      </div>
+      <div class="ab-step">
+        <div class="ab-step-num">3</div>
+        <p>Evaluamos tu situación para determinar cómo podemos ayudarte.</p>
+      </div>
+      <div class="ab-step">
+        <div class="ab-step-num">4</div>
+        <p>Te brindamos asistencia técnica remota y, si el inconveniente requiere una intervención presencial, evaluamos las alternativas disponibles y sus condiciones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALCANCE DEL SERVICIO -->
+<section class="ab-section alt">
+  <div class="ab-inner">
+    <div class="ab-head">
+      <span class="section-tag">Alcance</span>
+      <h2 class="section-title" style="margin-top:12px;">Alcance del <span class="accent">servicio</span></h2>
+    </div>
+
+    <div class="ab-scope">
+      <div class="ab-scope-card ab-scope-main">
+        <div class="ab-scope-icon"><img src="assets/icon_world.png" alt="" draggable="false"></div>
+        <p>El servicio está orientado principalmente a brindar asistencia técnica de manera remota, permitiendo resolver inconvenientes informáticos, realizar configuraciones y ofrecer asesoramiento sin necesidad de trasladar los equipos.</p>
+      </div>
+
+      <div class="ab-scope-card">
+        <h3>El servicio no contempla:</h3>
+        <ul class="ab-nolist">
+          <li><span class="ab-x">✕</span> Reparaciones físicas de computadoras, notebooks o componentes.</li>
+          <li><span class="ab-x">✕</span> Reemplazo de piezas o componentes de hardware.</li>
+          <li><span class="ab-x">✕</span> Instalaciones de cableado o infraestructura de red.</li>
+          <li><span class="ab-x">✕</span> Visitas técnicas presenciales incluidas en la cuota mensual.</li>
+          <li><span class="ab-x">✕</span> Compra de equipos, repuestos, licencias o software.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ab-note" style="margin-top:24px;">
+      <img src="assets/icon_home.png" alt="" draggable="false">
+      <p>En caso de necesitar una intervención presencial o un trabajo que exceda el alcance del soporte mensual, se podrá evaluar y presupuestar por separado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ CONTRATAR -->
+<section class="ab-section">
+  <div class="ab-inner">
+    <div class="ab-head">
+      <span class="section-tag">Ventajas</span>
+      <h2 class="section-title" style="margin-top:12px;margin-bottom:12px;">¿Por qué contratar<br>un <span class="accent">abono mensual?</span></h2>
+      <div class="ab-title-sub">Beneficios</div>
+    </div>
+    <div class="ab-benefits">
+      <div class="ab-benefit">
+        <div class="ab-benefit-icon"><img src="assets/icon_money.png" alt="" draggable="false"></div>
+        <h3>Un costo fijo y previsible</h3>
+      </div>
+      <div class="ab-benefit">
+        <div class="ab-benefit-icon"><img src="assets/icon_chat_1.png" alt="" draggable="false"></div>
+        <h3>Acceso directo a asistencia técnica</h3>
+      </div>
+      <div class="ab-benefit">
+        <div class="ab-benefit-icon"><img src="assets/icon_support.png" alt="" draggable="false"></div>
+        <h3>Atención de inconvenientes cotidianos</h3>
+      </div>
+      <div class="ab-benefit">
+        <div class="ab-benefit-icon"><img src="assets/icon_clock.png" alt="" draggable="false"></div>
+        <h3>Ahorro de tiempo</h3>
+      </div>
+      <div class="ab-benefit">
+        <div class="ab-benefit-icon"><img src="assets/icon_idea.png" alt="" draggable="false"></div>
+        <h3>Asesoramiento profesional</h3>
+      </div>
+      <div class="ab-benefit">
+        <div class="ab-benefit-icon"><img src="assets/icon_lock.png" alt="" draggable="false"></div>
+        <h3>Mayor tranquilidad para trabajar y utilizar tus equipos</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A QUIÉN ESTÁ DIRIGIDO -->
+<section class="ab-section alt">
+  <div class="ab-inner">
+    <div class="ab-head">
+      <span class="section-tag">Destinatarios</span>
+      <h2 class="section-title" style="margin-top:12px;">¿A quién está <span class="accent">dirigido?</span></h2>
+    </div>
+    <div class="ab-audience">
+      <div class="ab-chip"><span>✓</span> Particulares</div>
+      <div class="ab-chip"><span>✓</span> Profesionales independientes</div>
+      <div class="ab-chip"><span>✓</span> Comercios</div>
+      <div class="ab-chip"><span>✓</span> Pequeñas empresas</div>
+      <div class="ab-chip"><span>✓</span> Organizaciones</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="ab-section">
+  <div class="ab-inner ab-cta">
+    <p>Contactanos y solicitá un presupuesto para contar con <span class="accent">asistencia informática profesional</span> durante todo el mes.</p>
+    <a href="contacto.html" class="btn-primary">Solicitar presupuesto</a>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+</body>
+</html>

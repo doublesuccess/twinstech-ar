@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto – TwinsTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .contacto-page {
+      padding: 80px 5% 100px;
+      background: var(--black-card);
+    }
+    .contacto-page-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* LEFT SIDE */
+    .contacto-aside h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      margin-top: 16px;
+    }
+    .contacto-aside p {
+      color: var(--gray-text, #A0A0A0);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .contact-block {
+      margin-bottom: 36px;
+    }
+    .contact-block-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green-main);
+      margin-bottom: 14px;
+    }
+    .contact-method-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .contact-method-row:last-child { margin-bottom: 0; }
+    .cicon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(29,185,84,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .cinfo-label {
+      font-size: 0.75rem;
+      color: var(--gray-text, #A0A0A0);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .cinfo-value {
+      font-size: 0.93rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+    .cinfo-value a {
+      color: var(--green-main);
+      text-decoration: none;
+    }
+    .cinfo-value a:hover { text-decoration: underline; }
+
+    .horarios-grid {
+      display: grid;
+      gap: 8px;
+    }
+    .horario-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      padding: 10px 14px;
+      background: rgba(29,185,84,0.07);
+      border-radius: 8px;
+    }
+    .horario-dia { color: var(--gray-text, #A0A0A0); font-weight: 500; }
+    .horario-hora { color: var(--green-main); font-weight: 600; }
+    .horario-row.closed .horario-hora { color: var(--gray-text, #A0A0A0); }
+
+    .response-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--black-soft);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-top: 24px;
+    }
+    .response-badge-icon { font-size: 1.4rem; }
+    .response-badge-text {
+      font-size: 0.88rem;
+      color: rgba(248,255,249,0.85);
+      line-height: 1.5;
+    }
+    .response-badge-text strong { color: var(--green-main); }
+
+    /* RIGHT SIDE — FORM */
+    .contacto-form-card {
+      background: var(--black-card);
+      border: 1.5px solid var(--black-border);
+      border-radius: 20px;
+      padding: 48px 44px;
+      box-shadow: 0 8px 48px rgba(29,185,84,0.04);
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: var(--gray-text, #A0A0A0);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray-text, #A0A0A0);
+      letter-spacing: 0.3px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--black);
+      border: 1.5px solid #E0EDE6;
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #404040; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green-main);
+      background: var(--black-card);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .form-check input { width: auto; margin-top: 3px; flex-shrink: 0; }
+    .form-check label {
+      font-size: 0.82rem;
+      color: var(--gray-text, #A0A0A0);
+      line-height: 1.5;
+    }
+    .btn-form-full {
+      width: 100%;
+      background: var(--green-main);
+      color: var(--black);
+      padding: 16px;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(29,185,84,0.25);
+    }
+    .btn-form-full:hover {
+      background: #25d468;
+      color: var(--black);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(29,185,84,0.35);
+    }
+    .form-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--gray-text, #A0A0A0);
+      margin-top: 12px;
+    }
+    .form-error {
+      font-size: 0.75rem;
+      color: #e74c3c;
+      margin-top: 3px;
+      display: block;
+      min-height: 14px;
+    }
+
+    /* SUCCESS state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 0;
+    }
+    .success-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(29,185,84,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+    }
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .success-text {
+      font-size: 0.93rem;
+      color: var(--gray-text, #A0A0A0);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .contacto-page-inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .contacto-form-card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="page-hero-tag">Contacto</div>
+  <h1 class="page-hero-title">Soluciones tecnológicas<br><span class="accent">a tu alcance</span></h1>
+  <p class="page-hero-sub">Completá el formulario o escribinos directamente. Contanos qué necesitás y te respondemos a la brevedad.</p>
+</div>
+
+<section class="contacto-page">
+  <div class="contacto-page-inner">
+
+    <!-- ASIDE -->
+    <div class="contacto-aside">
+      <span class="section-tag">Ponete en contacto</span>
+      <h2>Escribinos cuando quieras</h2>
+      <p>Soporte técnico, diseño web o cualquier otra consulta — respondemos por el canal que te resulte más cómodo y siempre con información clara y sin vueltas.</p>
+
+      <div class="contact-block">
+        <div class="contact-block-title">Canales de contacto</div>
+        <div class="contact-method-row">
+          <div class="cicon"><img src="assets/icon_letter.png" alt="" style="width:22px;height:22px;object-fit:contain;"></div>
+          <div>
+            <div class="cinfo-label">Email</div>
+            <div class="cinfo-value"><a href="mailto:contacto@twinstech-ar.com">contacto@twinstech-ar.com</a></div>
+          </div>
+        </div>
+        <div class="contact-method-row">
+          <div class="cicon"><img src="assets/icon_contact.png" alt="" style="width:22px;height:22px;object-fit:contain;"></div>
+          <div>
+            <div class="cinfo-label">WhatsApp</div>
+            <div class="cinfo-value"><a href="https://wa.me/541140669217" target="_blank">+54 11 4066-9217</a></div>
+          </div>
+        </div>
+
+        <div class="contact-method-row">
+          <div class="cicon"><img src="assets/flag-ar.png" alt="" style="width:22px;height:22px;object-fit:contain;border-radius:3px;"></div>
+          <div>
+            <div class="cinfo-label">Ubicación</div>
+            <div class="cinfo-value">CABA, Buenos Aires, Argentina</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-block">
+        <div class="contact-block-title">Horario de atención</div>
+        <div class="horarios-grid">
+          <div class="horario-row">
+            <span class="horario-dia">Lunes a viernes</span>
+            <span class="horario-hora">9:00 – 18:00</span>
+          </div>
+          <div class="horario-row">
+            <span class="horario-dia">Sábados</span>
+            <span class="horario-hora">10:00 – 14:00</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="response-badge">
+        <div class="response-badge-icon"><img src="assets/icon_lightning.png" alt="" style="width:26px;height:26px;object-fit:contain;"></div>
+        <div class="response-badge-text">
+          <strong>Te respondemos lo antes posible.</strong><br>
+          Enviá tu consulta sin compromiso.
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="contacto-form-card">
+      <div id="formContent">
+        <div class="form-title">Envianos tu consulta</div>
+        <p class="form-subtitle">Contanos qué necesitás —soporte técnico, una web o cualquier consulta— y te respondemos a la brevedad. Los campos con * son obligatorios.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" id="f-nombre" placeholder="Tu nombre">
+            <span class="form-error" id="err-nombre"></span>
+          </div>
+          <div class="form-group">
+            <label>Apellido *</label>
+            <input type="text" id="f-apellido" placeholder="Tu apellido">
+            <span class="form-error" id="err-apellido"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="f-email" placeholder="tu@email.com">
+          <span class="form-error" id="err-email"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" id="f-telefono" placeholder="+54 11 ...">
+          </div>
+          <div class="form-group">
+            <label>Empresa / Negocio</label>
+            <input type="text" id="f-empresa" placeholder="Nombre de tu empresa">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Servicio de interés *</label>
+          <select id="f-servicio">
+            <option value="">Seleccioná una opción…</option>
+            <option>Soporte técnico</option>
+            <option>Asistencia Técnica Mensual</option>
+            <option>Página web nueva desde cero</option>
+            <option>Rediseño / mejora de web existente</option>
+            <option>Otro</option>
+          </select>
+          <span class="form-error" id="err-servicio"></span>
+        </div>
+
+        <div class="form-group">
+          <label>¿Cómo nos encontraste?</label>
+          <select id="f-como">
+            <option value="">Seleccioná una opción…</option>
+            <option>Google</option>
+            <option>Redes sociales</option>
+            <option>Recomendación de un conocido</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Descripción de tu consulta *</label>
+          <textarea id="f-descripcion" placeholder="Contanos en detalle qué necesitás, qué problema tenés o en qué etapa está tu proyecto…"></textarea>
+          <span class="form-error" id="err-descripcion"></span>
+        </div>
+
+        <div class="form-check">
+          <input type="checkbox" id="privacidad">
+          <label for="privacidad">Acepto que TwinsTech use mis datos de contacto para responder a esta consulta, conforme a la <a href="privacidad.html" target="_blank" style="color:var(--green-main);text-decoration:none;">Política de Privacidad</a>. No compartimos tu información con terceros.</label>
+        </div>
+        <span class="form-error" id="err-privacidad" style="margin-bottom:8px;display:block;"></span>
+
+        <button class="btn-form-full" id="f-submit" onclick="submitConsulta(event)">Enviar consulta →</button>
+        <p class="form-note">* Campos obligatorios · Te respondemos lo antes posible</p>
+      </div>
+
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon"><img src="assets/icon_chat_2.png" alt="" style="width:32px;height:32px;object-fit:contain;"></div>
+        <div class="success-title">¡Consulta enviada!</div>
+        <p class="success-text">Gracias por escribirnos. Recibimos tu mensaje y nos pondremos en contacto en menos de 24 horas hábiles.<br><br>Revisá también tu bandeja de spam por las dudas.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+  // ── FORMULARIO DE CONSULTAS (Google Forms) ────────────────────────────────
+  const GF_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSd_cZQOUz6TXrAKlWAdH02tHDPNKDH8OiH-vtewihCZi7d7og/formResponse';
+  const GF_MAP = {
+    nombre:      'entry.62425382',
+    apellido:    'entry.1545605784',
+    email:       'entry.668533237',
+    telefono:    'entry.1228117566',
+    empresa:     'entry.316300396',
+    servicio:    'entry.923581617',
+    como:        'entry.839672189',
+    descripcion: 'entry.487541934'
+  };
+
+  function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function setErr(id, msg) {
+    const el = document.getElementById('err-' + id);
+    if (el) el.textContent = msg;
+    const field = document.getElementById('f-' + id);
+    if (field) field.style.borderColor = msg ? '#e74c3c' : '';
+  }
+
+  function clearAll() {
+    ['nombre','apellido','email','servicio','descripcion','privacidad'].forEach(id => setErr(id, ''));
+  }
+
+  async function submitConsulta(e) {
+    e.preventDefault();
+    clearAll();
+
+    const nombre      = document.getElementById('f-nombre').value.trim();
+    const apellido    = document.getElementById('f-apellido').value.trim();
+    const email       = document.getElementById('f-email').value.trim();
+    const telefono    = document.getElementById('f-telefono').value.trim();
+    const empresa     = document.getElementById('f-empresa').value.trim();
+    const servicio    = document.getElementById('f-servicio').value;
+    const como        = document.getElementById('f-como').value;
+    const descripcion = document.getElementById('f-descripcion').value.trim();
+    const privacidad  = document.getElementById('privacidad').checked;
+
+    let valid = true;
+    if (!nombre)           { setErr('nombre',      'El nombre es obligatorio.');              valid = false; }
+    if (!apellido)         { setErr('apellido',     'El apellido es obligatorio.');            valid = false; }
+    if (!email)            { setErr('email',        'El email es obligatorio.');               valid = false; }
+    else if (!validateEmail(email)) { setErr('email', 'Ingresá un email válido (ej: nombre@dominio.com).'); valid = false; }
+    if (!servicio)         { setErr('servicio',     'Seleccioná un servicio de interés.');    valid = false; }
+    if (!descripcion)      { setErr('descripcion',  'Por favor describí tu consulta.');       valid = false; }
+    if (!privacidad)       { setErr('privacidad',   'Necesitamos tu aceptación para continuar.'); valid = false; }
+    if (!valid) return;
+
+    const btn = document.getElementById('f-submit');
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+
+    const body = new URLSearchParams();
+    body.append(GF_MAP.nombre,      nombre);
+    body.append(GF_MAP.apellido,    apellido);
+    body.append(GF_MAP.email,       email);
+    body.append(GF_MAP.telefono,    telefono);
+    body.append(GF_MAP.empresa,     empresa);
+    body.append(GF_MAP.servicio,    servicio);
+    body.append(GF_MAP.como,        como);
+    body.append(GF_MAP.descripcion, descripcion);
+
+    try {
+      await fetch(GF_URL, { method: 'POST', mode: 'no-cors', body });
+    } catch(_) { /* no-cors always throws — the submission still goes through */ }
+
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>

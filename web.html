@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diseño y Desarrollo Web – TwinsTech</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .srv-section { padding: 80px 5% 100px; background: var(--black); }
+    .srv-inner { max-width: 1100px; margin: 0 auto; }
+
+    /* Cards */
+    .cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; margin-bottom:32px; }
+    .price-card { border:1.5px solid var(--black-border); border-radius:16px; padding:36px 28px 32px; background:var(--black-card); position:relative; transition:border-color .25s,transform .2s,box-shadow .25s; }
+    .price-card:hover { border-color:rgba(29,185,84,0.35); transform:translateY(-4px); box-shadow:0 16px 48px rgba(29,185,84,0.08); }
+    .price-card.featured { border-color:var(--green-main); box-shadow:0 8px 40px rgba(29,185,84,0.12); }
+    .featured-badge { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--green-main); color:var(--black); font-family:var(--font-display); font-size:.72rem; font-weight:600; letter-spacing:.8px; text-transform:uppercase; padding:5px 16px; border-radius:100px; white-space:nowrap; }
+    .plan-name { font-family:var(--font-display); font-size:.75rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--green-main); margin-bottom:8px; }
+    .plan-desc { font-size:.88rem; color:#B0B0B0; line-height:1.65; margin-bottom:20px; min-height:48px; }
+    .plan-price { display:flex; flex-direction:column; align-items:flex-start; gap:2px; margin-bottom:6px; }
+    .price-amount { font-family:var(--font-display); font-size:2.1rem; font-weight:700; color:var(--gray-dark); line-height:1; }
+    .price-note { font-size:.75rem; color:#606060; margin-bottom:22px; min-height:18px; }
+    .plan-divider { height:1px; background:var(--black-border); margin-bottom:20px; }
+    .plan-features { list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:28px; }
+    .plan-features li { display:flex; align-items:flex-start; gap:10px; font-size:.87rem; color:#B0B0B0; line-height:1.4; }
+    .feat-check { color:var(--green-main); font-weight:700; flex-shrink:0; margin-top:1px; }
+    .feat-no { color:#333; font-weight:700; flex-shrink:0; margin-top:1px; }
+    .plan-features li.unavailable { opacity:.4; }
+    .btn-plan { display:block; text-align:center; padding:13px; border-radius:9px; font-family:var(--font-display); font-weight:600; font-size:.92rem; text-decoration:none; transition:all .2s; }
+    .btn-plan-outline { border:1.5px solid var(--green-main); color:var(--green-main); }
+    .btn-plan-outline:hover { background:rgba(29,185,84,0.08); }
+    .btn-plan-filled { background:var(--green-main); color:var(--black); box-shadow:0 4px 16px rgba(29,185,84,0.25); }
+    .btn-plan-filled:hover { background:#25d468; transform:translateY(-1px); }
+
+    /* FAQ */
+    .faq-item { border-bottom:1px solid rgba(240,240,240,0.08); }
+    .faq-question { width:100%; text-align:left; background:none; border:none; padding:20px 0; font-family:var(--font-display); font-size:1rem; font-weight:600; color:var(--white); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; transition:color .2s; }
+    .faq-question:hover { color:var(--green-main); }
+    .faq-arrow { width:28px; height:28px; border-radius:50%; background:rgba(29,185,84,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.85rem; transition:transform .3s,background .2s; color:var(--green-main); }
+    .faq-item.open .faq-arrow { transform:rotate(180deg); background:var(--green-main); color:white; }
+    .faq-answer { display:none; padding:0 0 20px; font-size:.93rem; color:#B0B0B0; line-height:1.75; }
+    .faq-item.open .faq-answer { display:block; }
+
+    .cta-strip { background:var(--black-soft); border:1px solid var(--black-border); border-radius:16px; padding:48px 40px; text-align:center; margin-top:72px; }
+    .cta-strip h3 { font-family:var(--font-display); font-size:1.5rem; font-weight:700; color:var(--white); margin-bottom:12px; letter-spacing:.2px; }
+    .cta-strip p { color:#B0B0B0; font-size:.95rem; margin-bottom:28px; }
+
+    @media (max-width:768px) { .cards-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="page-hero-tag">Diseño y Desarrollo Web</div>
+  <h1 class="page-hero-title">Sitios web <span class="accent">a tu medida</span></h1>
+  <p class="page-hero-sub">Diseñamos y desarrollamos páginas web modernas, rápidas y adaptadas a las necesidades de cada cliente. Desde una presencia básica hasta un sitio completo con tienda online.</p>
+</div>
+
+<section class="srv-section">
+  <div class="srv-inner">
+
+    <!-- PLANES -->
+    <div style="margin-bottom:60px;">
+      <span class="section-tag">Planes</span>
+      <h2 class="section-title" style="margin-top:12px;margin-bottom:8px;">Planes para cada <span class="accent">tipo de proyecto</span></h2>
+      <p style="color:#B0B0B0;font-size:.95rem;margin-bottom:16px;">Todos los planes incluyen diseño responsivo y formulario de contacto.</p>
+      <div style="padding:14px 18px;background:rgba(29,185,84,0.06);border:1px solid rgba(29,185,84,0.15);border-radius:8px;font-size:.85rem;color:#909090;line-height:1.6;margin-bottom:32px;">
+        <span style="color:var(--green-main);font-weight:600;">Precios estimativos.</span> Los valores son una referencia. El precio final puede variar según la complejidad, cantidad de secciones y funcionalidades requeridas. Siempre enviamos un presupuesto detallado antes de arrancar.
+      </div>
+
+      <div class="cards-grid">
+        <!-- BÁSICO -->
+        <div class="price-card">
+          <div class="plan-name">Básico</div>
+          <p class="plan-desc">Ideal para emprendedores o negocios que necesitan presencia online rápida y prolija.</p>
+          <div class="plan-price">
+            <span style="font-size:.8rem;color:#606060;padding-bottom:2px;">Desde</span>
+            <span class="price-amount">$150.000</span>
+            <span style="font-size:.85rem;color:#606060;">ARS</span>
+          </div>
+          <p class="price-note">Pago 50% adelanto · 50% entrega</p>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Hasta 3 secciones</li>
+            <li><span class="feat-check">✓</span> Diseño responsivo (mobile-first)</li>
+            <li><span class="feat-check">✓</span> Formulario de contacto</li>
+            <li><span class="feat-check">✓</span> Integración con redes sociales</li>
+            <li><span class="feat-check">✓</span> SEO básico</li>
+            <li><span class="feat-check">✓</span> 15 días de soporte post-entrega</li>
+            <li class="unavailable"><span class="feat-no">✕</span> Blog o noticias</li>
+            <li class="unavailable"><span class="feat-no">✕</span> Tienda online</li>
+            <li class="unavailable"><span class="feat-no">✕</span> Panel de administración</li>
+          </ul>
+          <a href="contacto.html" class="btn-plan btn-plan-outline">Consultar →</a>
+        </div>
+
+        <!-- PROFESIONAL -->
+        <div class="price-card featured">
+          <div class="featured-badge">⭐ Más elegido</div>
+          <div class="plan-name">Profesional</div>
+          <p class="plan-desc">Para quienes quieren un sitio completo, con más secciones, blog y mayor personalización.</p>
+          <div class="plan-price">
+            <span style="font-size:.8rem;color:#606060;padding-bottom:2px;">Desde</span>
+            <span class="price-amount">$350.000</span>
+            <span style="font-size:.85rem;color:#606060;">ARS</span>
+          </div>
+          <p class="price-note">Pago 50% adelanto · 50% entrega</p>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Hasta 7 secciones</li>
+            <li><span class="feat-check">✓</span> Diseño responsivo (mobile-first)</li>
+            <li><span class="feat-check">✓</span> Formulario de contacto</li>
+            <li><span class="feat-check">✓</span> Integración con redes sociales</li>
+            <li><span class="feat-check">✓</span> SEO optimizado</li>
+            <li><span class="feat-check">✓</span> Blog o sección de noticias</li>
+            <li><span class="feat-check">✓</span> Panel de administración</li>
+            <li><span class="feat-check">✓</span> Google Analytics incluido</li>
+            <li><span class="feat-check">✓</span> 30 días de soporte post-entrega</li>
+            <li class="unavailable"><span class="feat-no">✕</span> Tienda online</li>
+          </ul>
+          <a href="contacto.html" class="btn-plan btn-plan-filled">Consultar →</a>
+        </div>
+
+        <!-- E-COMMERCE -->
+        <div class="price-card">
+          <div class="plan-name">E-Commerce</div>
+          <p class="plan-desc">Para negocios que quieren vender en línea. Tienda completa con catálogo y medios de pago.</p>
+          <div class="plan-price">
+            <span style="font-size:.8rem;color:#606060;padding-bottom:2px;">Desde</span>
+            <span class="price-amount">$600.000</span>
+            <span style="font-size:.85rem;color:#606060;">ARS</span>
+          </div>
+          <p class="price-note">Precio estimativo · Pago en 3 cuotas según avance</p>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Todo lo del plan Profesional</li>
+            <li><span class="feat-check">✓</span> Tienda online</li>
+            <li><span class="feat-check">✓</span> Catálogo de productos</li>
+            <li><span class="feat-check">✓</span> Carrito y proceso de compra</li>
+            <li><span class="feat-check">✓</span> Integración con MercadoPago</li>
+            <li><span class="feat-check">✓</span> Panel de administración</li>
+            <li><span class="feat-check">✓</span> 30 días de soporte post-entrega</li>
+          </ul>
+          <a href="contacto.html" class="btn-plan btn-plan-outline">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Mejoras card -->
+      <div style="border:1.5px solid rgba(29,185,84,0.3);border-radius:14px;overflow:hidden;">
+        <div style="background:rgba(29,185,84,0.08);padding:22px 28px;display:flex;align-items:center;gap:16px;">
+          <img src="assets/icon_refresh_2.png" alt="" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;">
+          <div>
+            <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:4px;">¿Ya tenés una web pero necesita mejoras?</div>
+            <div style="font-size:.85rem;color:var(--green-main);font-weight:500;">Rediseño · Actualización de contenido · Mejoras de rendimiento</div>
+          </div>
+          <a href="contacto.html" style="margin-left:auto;flex-shrink:0;background:var(--green-main);color:var(--black);padding:10px 20px;border-radius:8px;font-family:var(--font-display);font-weight:700;font-size:.88rem;text-decoration:none;white-space:nowrap;" onmouseover="this.style.background='#25d468'" onmouseout="this.style.background='var(--green-main)'">Consultanos →</a>
+        </div>
+        <div style="padding:18px 28px;background:var(--black-card);border-top:1px solid rgba(29,185,84,0.12);">
+          <p style="font-size:.88rem;color:#808080;line-height:1.65;">El rediseño o mejora de un sitio existente tiene precio personalizado. El presupuesto es siempre sin costo y sin compromiso.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="max-width:860px;margin:0 auto;">
+      <span class="section-tag">Preguntas frecuentes</span>
+      <h2 class="section-title" style="margin-top:12px;margin-bottom:32px;">Preguntas <span class="accent">Frecuentes</span></h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Cuánto tiempo tarda en estar lista mi página web?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Depende de la complejidad del proyecto. Un sitio básico puede estar listo en 1 a 2 semanas. Un sitio con más secciones, animaciones o funcionalidades específicas puede llevar entre 3 y 6 semanas. Siempre acordamos un plazo realista al inicio y lo respetamos.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Puedo solicitar cambios durante el desarrollo?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Sí. Durante el desarrollo te mostramos avances periódicamente para que puedas pedir ajustes. Incluimos una ronda de revisiones en el presupuesto. Si los cambios implican un rediseño mayor o funcionalidades no previstas, lo coordinamos con un presupuesto adicional antes de proceder.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Mi sitio va a verse bien en celular?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Siempre. Todas las páginas que desarrollamos son 100% responsivas y se adaptan a celulares, tablets y computadoras. Hoy más del 60% del tráfico web proviene de móviles, así que esto es parte del estándar de trabajo.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Qué necesito tener listo para empezar?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Lo ideal es tener claro el objetivo del sitio, un logo o identidad visual (si no tenés, podemos orientarte), los textos principales y algunas fotos si las tenés. No es necesario tener todo perfecto al inicio, podemos arrancar con lo que haya. Nos encargamos de organizar el contenido.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Incluyen hosting y dominio?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">El hosting y el dominio son servicios de terceros con costos anuales propios. Podemos asesorarte en qué proveedor usar, ayudarte a contratarlo y configurarlo todo. Si ya tenés dominio o hosting, también trabajamos con lo que tenés.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Pueden mejorar o rediseñar una web que ya tengo?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Sí. Analizamos tu sitio actual, identificamos qué funciona y qué no, y proponemos mejoras concretas de diseño, velocidad o estructura. También podemos migrar tu contenido a una plataforma nueva si es necesario.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Cómo son los precios y formas de pago?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Los precios son estimativos y varían según la complejidad de cada proyecto. Siempre enviamos un presupuesto detallado antes de arrancar. Para proyectos web, generalmente pedimos un 50% de adelanto al inicio y el resto a la entrega. Aceptamos transferencia bancaria y las principales billeteras virtuales.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">¿Cómo me contacto para pedir un presupuesto?<span class="faq-arrow">▾</span></button>
+        <div class="faq-answer">Podés escribirnos por email a contacto@twinstech-ar.com, por WhatsApp al +54 11 4066-9217 o a través del formulario de contacto.</div>
+      </div>
+    </div>
+
+    <div class="cta-strip">
+      <h3>¿Querés una web profesional?</h3>
+      <p>Contanos tu proyecto y te respondemos con un presupuesto detallado sin costo.</p>
+      <a href="contacto.html" class="btn-primary">Pedir presupuesto</a>
+    </div>
+
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+  function toggle(btn) { btn.closest('.faq-item').classList.toggle('open'); }
+</script>
+</body>
+</html>

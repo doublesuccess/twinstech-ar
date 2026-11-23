@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Preguntas frecuentes – TwinsTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .faq-section {
+      padding: 80px 5% 100px;
+      background: var(--black-card);
+    }
+    .faq-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-categories {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .faq-cat-btn {
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(29,185,84,0.25);
+      background: none;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--gray-text, #A0A0A0);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .faq-cat-btn:hover,
+    .faq-cat-btn.active {
+      border-color: var(--green-main);
+      background: rgba(29,185,84,0.06);
+      color: var(--green-main);
+      font-weight: 500;
+    }
+
+    .faq-group { margin-bottom: 52px; }
+    .faq-group-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green-main);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--black-border);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(240,240,240,0.08);
+    }
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 20px 0;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--green-main); }
+    .faq-arrow {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(29,185,84,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      transition: transform 0.3s, background 0.2s;
+      color: var(--green-main);
+    }
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+      background: var(--green-main);
+      color: white;
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 0 20px;
+      font-size: 0.93rem;
+      color: var(--gray-text, #A0A0A0);
+      line-height: 1.75;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* CTA */
+    .faq-cta {
+      background: rgba(29,185,84,0.06);
+      border-radius: 16px;
+      padding: 48px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .faq-cta h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .faq-cta p {
+      color: var(--gray-text, #A0A0A0);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .faq-cta { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="page-hero-tag">FAQ</div>
+  <h1 class="page-hero-title">Preguntas <span class="accent">frecuentes</span></h1>
+  <p class="page-hero-sub">Reunimos las dudas más comunes de nuestros clientes. Si no encontrás lo que buscás, escribinos sin problemas.</p>
+</div>
+
+<section class="faq-section">
+  <div class="faq-inner">
+
+    <!-- Categorías -->
+    <div class="faq-categories">
+      <button class="faq-cat-btn active" onclick="filterCat('all', this)">Todas</button>
+      <button class="faq-cat-btn" onclick="filterCat('soporte', this)">Soporte técnico</button>
+      <button class="faq-cat-btn" onclick="filterCat('web', this)">Páginas web</button>
+      <button class="faq-cat-btn" onclick="filterCat('general', this)">General</button>
+    </div>
+
+<!-- GRUPO SOPORTE -->
+    <div class="faq-group" data-cat="soporte">
+      <div class="faq-group-title">Soporte técnico</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Cómo funciona el servicio de soporte técnico?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Según tu ubicación y el tipo de problema, el servicio puede ser presencial o remoto. Si estás en zona Microcentro y alrededores (CABA), podemos coordinar una visita directamente. Para el resto del país, trabajamos de forma remota conectándonos a tu equipo con herramientas de acceso seguro y encriptado. En ambos casos, te acompañamos durante todo el proceso.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Qué tipo de problemas pueden resolver?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Resolvemos una amplia variedad de situaciones: optimización de PC lenta, instalación de drivers y programas, configuración de Windows, instalación limpia del sistema operativo, armado de PC, configuración de impresoras y redes compartidas, entre otros. Si tenés algún problema específico que no está en la lista, consultanos — casi siempre podemos ayudarte.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Funciona con Mac también, o solo Windows?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Trabajamos con ambos sistemas operativos: Windows (desde Windows 10 en adelante) y macOS. También damos soporte en Linux para usuarios con conocimiento técnico básico. Si tenés dudas sobre tu versión de sistema operativo, consultanos.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Cuánto tiempo lleva resolver un problema?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Depende del tipo de trabajo. Muchas consultas se resuelven en 20 a 40 minutos. Problemas más complejos como configuración de redes, instalación de Windows o armado de PC pueden llevar más tiempo. Siempre te estimamos el tiempo antes de arrancar.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Qué pasa si el problema no se resuelve en la sesión?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Si el trabajo requiere más tiempo del estimado, lo coordinamos en un nuevo encuentro. Solo cobramos por el trabajo efectivamente realizado. En casos donde el problema no tiene solución por software (por ejemplo, una falla de hardware), te lo decimos honestamente y te orientamos sobre los pasos a seguir.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿También hacen soporte técnico de forma presencial?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Sí. Ofrecemos atención presencial en zona Microcentro y alrededores (CABA). Para otras zonas del país, brindamos soporte de forma remota con las mismas garantías de calidad. En ambos casos, coordinamos el horario según tu disponibilidad.
+        </div>
+      </div>
+    </div>
+
+    <!-- GRUPO WEB -->
+    <div class="faq-group" data-cat="web">
+      <div class="faq-group-title">Páginas web</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Cuánto tiempo tarda en estar lista mi página web?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Depende de la complejidad del proyecto. Un sitio institucional básico puede estar listo en 1 a 2 semanas. Un sitio con más secciones, animaciones o funcionalidades específicas puede llevar entre 3 y 6 semanas. Siempre acordamos un plazo realista al inicio del proyecto y lo respetamos.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Puedo solicitar cambios mientras están desarrollando mi web?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Sí. Durante el desarrollo te mostramos avances periódicamente para que puedas pedir ajustes. Incluimos una ronda de revisiones en el presupuesto. Si los cambios implican un rediseño mayor o funcionalidades no previstas, lo coordinamos con un presupuesto adicional antes de proceder.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Mi sitio va a verse bien en celular?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Siempre. Todas las páginas que desarrollamos son 100% responsivas, lo que significa que se adaptan automáticamente a celulares, tablets y computadoras de escritorio. Hoy más del 60% del tráfico web proviene de dispositivos móviles, así que esto no es opcional: es parte del estándar de trabajo.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Qué necesito tener listo antes de arrancar?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Lo ideal es que tengas claro: el objetivo del sitio, un logo o identidad visual (si no tenés, podemos orientarte), los textos principales y algunas fotos si las tenés. No es necesario tener todo perfecto al inicio, podemos arrancar con lo que haya y completar en el camino. Nosotros nos encargamos de organizar el contenido.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Incluyen hosting y dominio?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          El hosting y el dominio son servicios de terceros con costos anuales propios. Podemos asesorarte en qué proveedor usar, ayudarte a contratarlo y configurarlo todo. Si ya tenés un dominio o hosting, también trabajamos con lo que tenés.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Pueden mejorar o rediseñar una web que ya tengo?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Sí. Analizamos tu sitio actual, identificamos qué funciona y qué no, y proponemos mejoras concretas de diseño, velocidad o estructura. También podemos migrar tu contenido a una plataforma nueva si es necesario.
+        </div>
+      </div>
+    </div>
+
+    <!-- GRUPO GENERAL -->
+    <div class="faq-group" data-cat="general">
+      <div class="faq-group-title">General</div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Cómo son los precios y formas de pago?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Los precios varían según el servicio y la complejidad. Siempre enviamos un presupuesto detallado antes de arrancar. Para soporte técnico, el pago se realiza al finalizar la sesión. Para proyectos web, generalmente pedimos un adelanto al inicio y el resto a la entrega. Aceptamos transferencia bancaria y las principales billeteras virtuales.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Trabajan con empresas de todo el país?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Sí. Al trabajar de forma 100% remota, podemos atender clientes de cualquier punto de Argentina. También trabajamos con clientes en el exterior, principalmente países de habla hispana.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Cómo me contacto para pedir un presupuesto?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Podés escribirnos por el formulario de contacto de la web, por email a contacto@twinstech.com.ar o por WhatsApp. Respondemos en menos de 24 horas hábiles. En la primera consulta (que es gratuita) hablamos sobre lo que necesitás y te damos una orientación de costos y tiempos.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          ¿Tienen garantía en sus servicios?
+          <span class="faq-arrow">▾</span>
+        </button>
+        <div class="faq-answer">
+          Para soporte técnico, si el mismo problema reaparece dentro de los 7 días posteriores a la sesión, lo revisamos sin cargo. Para proyectos web, garantizamos un período de soporte post-entrega para corregir errores o ajustes menores sin costo adicional.
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="faq-cta">
+      <h3>¿No encontraste lo que buscabas?</h3>
+      <p>Escribinos directamente — respondemos todas las consultas en menos de 24 horas.</p>
+      <a href="contacto.html" class="btn-primary">Hacer una consulta</a>
+    </div>
+
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+  function toggle(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.faq-group').forEach(g => {
+      if (cat === 'all' || g.dataset.cat === cat) {
+        g.style.display = '';
+      } else {
+        g.style.display = 'none';
+      }
+    });
+  }
+</script>
+</body>
+</html>
